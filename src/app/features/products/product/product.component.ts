@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../models/product.model';
+import { Product } from '../../../models/product.model';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './product.component.scss',
 })
 export class ProductComponent {
-
   @Input() product: Product | undefined;
 
   addToCart() {}
