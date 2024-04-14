@@ -14,16 +14,5 @@ import { CommonModule } from '@angular/common';
 export class ProductsComponent {
   productSvc = inject(ProductService);
 
-  products: Product[] = [];
-
-  ngOnInit() {
-    this.productSvc.getAllProducts().subscribe({
-      next: (products) => {
-        this.products = products;
-      },
-      error: (error) => {
-        console.error(error);
-      },
-    });
-  }
+  products$ = this.productSvc.getAllProducts();
 }

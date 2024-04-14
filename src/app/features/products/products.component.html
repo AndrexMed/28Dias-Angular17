@@ -1,6 +1,8 @@
-<span class="products">
-@for (item of products; track $index) {
-
+@if (products$ |async; as products) {
+<span class="flex justify-center flex-wrap gap-4 mx-6">
+  @for (item of products; track item.id) {
   <app-product [product]="item"></app-product>
-}
+
+  }
 </span>
+}
