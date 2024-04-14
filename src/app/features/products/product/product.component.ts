@@ -3,6 +3,13 @@ import { Product } from '../../../models/product.model';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+function addDiscontProperty(product: Product) {
+  return {
+    discount: false,
+    ...product,
+  };
+}
+
 @Component({
   selector: 'app-product',
   standalone: true,
@@ -11,7 +18,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './product.component.scss',
 })
 export class ProductComponent {
-  @Input() product: Product | undefined;
+  @Input({
+    required: true,
+    transform: addDiscontProperty,
+  })
+  product!: Product;
 
   addToCart() {}
 
