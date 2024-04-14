@@ -1,1 +1,6 @@
-<p>products works!</p>
+<span class="products">
+@for (item of products; track $index) {
+
+  <app-product [product]="item"></app-product>
+}
+</span>

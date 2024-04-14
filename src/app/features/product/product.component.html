@@ -1,0 +1,15 @@
+<span class="product">
+  <h1>{{ product!.title }}</h1>
+  <h2>Price: {{ product!.price | currency: "COP" }}$</h2>
+  <h3>{{ product!.id }}</h3>
+  <img
+    src="{{ product!.images[0] }}"
+    alt="{{ product!.title }}"
+    (error)="handleImageError($event)"
+  />
+  <p class="description" >{{ product!.description }}</p>
+  <span class="container-btns">
+    <button [routerLink]="['/product-detail', product!.id]">Show Details</button>
+    <button (click)="addToCart()">Add to cart</button>
+  </span>
+</span>
