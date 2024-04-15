@@ -24,7 +24,7 @@ export class ProductsComponent implements OnInit {
 
   productSvc2!: any;
   private readonly injector = inject(EnvironmentInjector);
-
+  
   ngOnInit(): void {
     // runInInjectionContext(this.injector, () => {
     //   this.productSvc2 = inject(ProductService);
