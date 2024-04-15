@@ -26,10 +26,10 @@ export class ProductsComponent implements OnInit {
   private readonly injector = inject(EnvironmentInjector);
 
   ngOnInit(): void {
-    runInInjectionContext(this.injector, () => {
-      this.productSvc2 = inject(ProductService);
-      const result = toSignal(this.products$);
-      console.log(result);
-    });
+    // runInInjectionContext(this.injector, () => {
+    //   this.productSvc2 = inject(ProductService);
+    //   const result = toSignal(this.products$);
+    //   console.log(result);
+    // });
   }
 }
