@@ -11,14 +11,18 @@ export const routes: Routes = [
   },
   {
     path: 'products',
-    component: ProductsComponent,
+    loadComponent: () => import('./features/products/products.component').then((c) => c.ProductsComponent),
   },
   {
     path: 'product-detail/:id',
-    component: DetailsComponent,
+    loadComponent: () =>
+      import('./features/products/product/details/details.component').then(
+        (c) => c.DetailsComponent
+      ),
   },
   {
     path: 'cart',
-    component: CartComponent,
+    loadComponent: () =>
+      import('./features/cart/cart.component').then((c) => c.CartComponent),
   },
 ];
