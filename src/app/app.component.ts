@@ -14,7 +14,13 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterOutlet, CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  //styleUrl: './app.component.scss',
+  //styleUrls: ['./app.component.scss', './otroArchivo.scss'],
+  // styles: ['$primary: red; h2 {color: $primary}'],
+  styles: `h2{
+    color: orange;
+    font-weight: bold;
+  }`,
 })
 export class AppComponent {
   private readonly productSvc = inject(ProductService);
