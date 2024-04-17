@@ -1,8 +1,33 @@
 @if (products$ |async; as products) {
+<button
+  class="bg-red-100 mx-8 mb-6 p-4 rounded hover:bg-red-200 active:bg-red-300 cursor-pointer"
+  (click)="cond = !cond"
+>
+  Load Info {{ cond }}
+</button>
+
+<button
+  class="bg-blue-100 mx-8 mb-6 p-4 rounded hover:bg-blue-200 active:bg-blue-300 cursor-pointer"
+  #interaccion
+>
+  Load Info {{ cond }}
+</button>
+
 <span class="flex justify-center flex-wrap gap-4 mx-6">
   @for (item of products; track item.id) {
+  <!-- @defer { SIN CONDICION-->
+  <!-- @defer(when cond) { CON CONDICION-->
+  <!-- @defer(when cond) { -->
+    @defer(on interaction(interaccion)) {
   <app-product [product]="item"></app-product>
-
-  }
+  } @placeholder {
+  <app-skeleton />
+  } @loading {
+  <app-loading />
+  } @error {
+  <span>
+    <p>Error en la imagen.</p>
+  </span>
+  } }
 </span>
 }
