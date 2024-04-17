@@ -5,10 +5,17 @@ export interface Product {
   description: string;
   category: Category;
   images: string[];
+  rating: Rating,
+  discount: boolean;
 }
 
 export interface Category {
   id: number;
   name: string;
   image: string;
+}
+
+export interface Rating{
+  rate: number;
+  count: number;
 }

@@ -1,12 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, computed, input } from '@angular/core';
 import { Product } from '../../../models/product.model';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-function addDiscontProperty(product: Product) {
+function addDiscontProperty(product: Product): Product {
   return {
-    discount: false,
     ...product,
+    discount: false,
+    rating: {
+      rate: 4.1,
+      count: 50,
+    },
   };
 }
 
@@ -18,11 +22,24 @@ function addDiscontProperty(product: Product) {
   styleUrl: './product.component.scss',
 })
 export class ProductComponent {
-  @Input({
-    required: true,
+  // @Input({
+  //   required: true,
+  //   transform: addDiscontProperty,
+  // })
+  // product!: Product;
+
+  product = input.required({
     transform: addDiscontProperty,
-  })
-  product!: Product;
+  });
+
+  rating = computed(() => {
+    const { rating } = this.product();
+    return Object.values(rating);
+  });
+
+  ngOnInit() {
+    console.log(this.product);
+  }
 
   addToCart() {}
 
