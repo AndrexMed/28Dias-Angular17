@@ -25,4 +25,9 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/cart/cart.component').then((c) => c.CartComponent),
   },
+  {
+    path: 'signals',
+    loadComponent: () =>
+      import('./features/signal/signal.component').then((c) => c.SignalComponent),
+  },
 ];
