@@ -24,6 +24,8 @@ export class ProductsComponent implements OnInit {
   productSvc = inject(ProductService);
   products$ = this.productSvc.getAllProducts();
 
+  productsSignal = toSignal(this.products$);
+
   productSvc2!: any;
   private readonly injector = inject(EnvironmentInjector);
 

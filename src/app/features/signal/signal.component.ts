@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   Injector,
@@ -6,11 +7,12 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-signal',
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './signal.component.html',
   styleUrl: './signal.component.scss',
 })
@@ -22,6 +24,8 @@ export class SignalComponent {
   usuarioComputed = computed(
     () => `Usuario : ${this.usuario()} + ${this.searchQueryReadOnly()}`
   );
+
+  myOsb$ = toObservable(this.usuario);
 
   private readonly injector = inject(Injector);
   constructor() {
