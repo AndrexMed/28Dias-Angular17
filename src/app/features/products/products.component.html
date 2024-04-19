@@ -13,6 +13,8 @@
   Load Info {{ cond }}
 </button>
 
+<p>Value In Parent: {{ valueFromParent }}</p>
+
 <!-- <span class="flex justify-center flex-wrap gap-4 mx-6">
   @for (item of products; track item.id) { -->
 <!-- @defer { SIN CONDICION-->
@@ -37,7 +39,7 @@
   <!-- @defer(when cond) { CON CONDICION-->
   <!-- @defer(when cond) { -->
   @defer(on interaction(interaccion)) {
-  <app-product [product]="item"></app-product>
+  <app-product [product]="item" [(value)]="valueFromParent"></app-product>
   } @placeholder {
   <app-skeleton />
   } @loading {

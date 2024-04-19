@@ -1,4 +1,4 @@
-import { Component, Input, computed, input } from '@angular/core';
+import { Component, Input, computed, input, model } from '@angular/core';
 import { Product } from '../../../models/product.model';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -37,11 +37,15 @@ export class ProductComponent {
     return Object.values(rating);
   });
 
+  value = model(0);
+
   ngOnInit() {
     console.log(this.product);
   }
 
-  addToCart() {}
+  increment() {
+    this.value.update(currentValue => currentValue + 1);
+  }
 
   handleImageError(event: any) {
     event.target.src =

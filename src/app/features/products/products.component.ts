@@ -30,6 +30,8 @@ export class ProductsComponent implements OnInit {
   private readonly injector = inject(EnvironmentInjector);
 
   cond: boolean = false;
+
+  valueFromParent = 100;
   
   ngOnInit(): void {
     // runInInjectionContext(this.injector, () => {

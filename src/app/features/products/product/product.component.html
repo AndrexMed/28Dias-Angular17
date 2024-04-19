@@ -15,7 +15,8 @@
     <p>count: {{ product().rating.count }}</p>
 
   <span class="flex flex-col gap-3">
-    <button class="bg-slate-400 p-2 rounded active:bg-slate-200" (click)="addToCart()">
+    <p>Value From Child: {{ value() }}</p>
+    <button class="bg-slate-400 p-2 rounded active:bg-slate-200" (click)="increment()">
       Add to cart
     </button>
   </span>
