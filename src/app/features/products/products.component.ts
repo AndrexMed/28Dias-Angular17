@@ -1,9 +1,14 @@
 import {
+  AfterViewInit,
   Component,
   EnvironmentInjector,
   OnInit,
+  ViewChild,
+  effect,
   inject,
   runInInjectionContext,
+  viewChild,
+  viewChildren,
 } from '@angular/core';
 import { ProductService } from '../../api/product.service';
 import { Product } from '../../models/product.model';
@@ -16,11 +21,15 @@ import { LoadingComponent } from '../../shared/components/loading/loading.compon
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ProductComponent, AsyncPipe, SkeletonComponent, LoadingComponent],
+  imports: [ProductComponent, CommonModule, SkeletonComponent, LoadingComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
 export class ProductsComponent implements OnInit {
+
+  childComponent = viewChild.required(ProductComponent);
+  childrenComponent = viewChildren(ProductComponent);
+
   productSvc = inject(ProductService);
   products$ = this.productSvc.getAllProducts();
 
@@ -32,7 +41,14 @@ export class ProductsComponent implements OnInit {
   cond: boolean = false;
 
   valueFromParent = 100;
-  
+
+  constructor() {
+    effect(() =>
+     console.log("Hello From Child: ", this.childComponent().value())
+    // console.log("Hello From Children: ", this.childrenComponent())
+  );
+  }
+
   ngOnInit(): void {
     // runInInjectionContext(this.injector, () => {
     //   this.productSvc2 = inject(ProductService);
