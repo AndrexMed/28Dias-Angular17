@@ -21,13 +21,17 @@ import { LoadingComponent } from '../../shared/components/loading/loading.compon
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ProductComponent, CommonModule, SkeletonComponent, LoadingComponent],
+  imports: [
+    ProductComponent,
+    CommonModule,
+    SkeletonComponent,
+    LoadingComponent,
+  ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
 export class ProductsComponent implements OnInit {
-
-  childComponent = viewChild.required(ProductComponent);
+  childComponent = viewChild(ProductComponent);
   childrenComponent = viewChildren(ProductComponent);
 
   productSvc = inject(ProductService);
@@ -43,10 +47,16 @@ export class ProductsComponent implements OnInit {
   valueFromParent = 100;
 
   constructor() {
-    effect(() =>
-     console.log("Hello From Child: ", this.childComponent().value())
-    // console.log("Hello From Children: ", this.childrenComponent())
-  );
+    effect(() => {
+      const valueOfChild = this.childComponent()?.value();
+
+      if(valueOfChild){
+        console.log('Hello From Child: ', this.childComponent()?.value());
+      }else{
+        console.log("%cEl value de child no tiene un valor o no se ha renderizado", "color:red")
+      }
+      // console.log("Hello From Children: ", this.childrenComponent())
+    });
   }
 
   ngOnInit(): void {
