@@ -8,6 +8,7 @@ import {
   signal,
 } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { patchState, signalState } from '@ngrx/signals';
 
 @Component({
   selector: 'app-signal',
@@ -27,14 +28,16 @@ export class SignalComponent {
 
   myOsb$ = toObservable(this.usuario);
 
-  counter = signal<number>(0);
-  counterComputed = computed(() => this.counter() * 2);
+  // counter = signal<number>(0);
+  // counterComputed = computed(() => this.counter() * 2);
+  state = signalState({ counter: 0});
 
   private readonly injector = inject(Injector);
   constructor() {
     effect(() => {
       //console.log(this.searchQuery());
-      console.log("The value of counter in effect: ", this.counter());
+      // console.log("The value of counter in effect: ", this.counter());
+      console.log("The value of counter in effect: ", this.state.counter());
     }); //Dentro del Contexto
   }
   changeValue() {
@@ -47,10 +50,16 @@ export class SignalComponent {
   }
 
   increment(){
-    this.counter.update((currentValue) => currentValue + 1);
+    //this.counter.update((currentValue) => currentValue + 1);
+    patchState(this.state, (state) => ({ counter: state.counter + 1 }));
   }
 
   decrement(){
-    this.counter.update((currentValue) => currentValue - 1);
+    //this.counter.update((currentValue) => currentValue - 1);
+    patchState(this.state, (state) => ({ counter: state.counter - 1 }));
+  }
+
+  reset(){
+    patchState(this.state, { counter: 0 });
   }
 }
