@@ -1,9 +1,12 @@
 import {
   AfterViewInit,
   Component,
+  ElementRef,
   EnvironmentInjector,
   OnInit,
   ViewChild,
+  contentChild,
+  contentChildren,
   effect,
   inject,
   runInInjectionContext,
@@ -34,6 +37,9 @@ export class ProductsComponent implements OnInit {
   childComponent = viewChild(ProductComponent);
   childrenComponent = viewChildren(ProductComponent);
 
+  button = contentChild<ElementRef>('btn');
+  products = contentChildren<ElementRef>('products');
+
   productSvc = inject(ProductService);
   products$ = this.productSvc.getAllProducts();
 
@@ -55,7 +61,21 @@ export class ProductsComponent implements OnInit {
       }else{
         console.log("%cEl value de child no tiene un valor o no se ha renderizado", "color:red")
       }
-      // console.log("Hello From Children: ", this.childrenComponent())
+      
+      const valueBtnOfChild = this.button();
+      const valueOfProductsChild = this.childrenComponent();
+
+      if(valueBtnOfChild){
+        console.log(valueBtnOfChild);
+      }else{
+        console.log('here: ', valueBtnOfChild);
+      }
+
+      if (valueOfProductsChild){
+        console.log(valueOfProductsChild);
+      }else{
+        console.log("here ", valueOfProductsChild);
+      }
     });
   }
 

@@ -33,12 +33,12 @@
   } }
 </span> -->
 
-<span class="flex justify-center flex-wrap gap-4 mx-6">
-  @for (item of productsSignal(); track item.id) {
+<!-- <span class="flex justify-center flex-wrap gap-4 mx-6">
+  @for (item of productsSignal(); track item.id) { -->
   <!-- @defer { SIN CONDICION-->
   <!-- @defer(when cond) { CON CONDICION-->
   <!-- @defer(when cond) { -->
-  @defer(on interaction(interaccion)) {
+  <!-- @defer(on interaction(interaccion)) {
   <app-product [product]="item" [(value)]="valueFromParent"></app-product>
   } @placeholder {
   <app-skeleton />
@@ -49,6 +49,13 @@
     <p>Error en la imagen.</p>
   </span>
   } }
-</span>
+</span> -->
 
+<!-- SIN DEFFER -->
+<span class="flex justify-center flex-wrap gap-4 mx-6">
+  @for (item of productsSignal(); track item.id) {
+  <app-product [product]="item" [(value)]="valueFromParent"></app-product>
+  }
+</span>
+  
 <!-- } -->

@@ -40,7 +40,7 @@ export class ProductComponent {
   value = model(0);
 
   ngOnInit() {
-    console.log(this.product);
+    //console.log(this.product);
   }
 
   increment() {

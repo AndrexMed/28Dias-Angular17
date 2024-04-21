@@ -1,6 +1,6 @@
 <span
-  class="h-96 flex flex-col w-52 justify-between items-center border rounded p-2 gap-3"
->
+  class="h-full flex flex-col w-52 justify-between items-center border rounded p-2 gap-3"
+#products>
   <img
     class="w-28 rounded"
     src="{{ product()!.images[0] }}"
@@ -16,7 +16,7 @@
 
   <span class="flex flex-col gap-3">
     <p>Value From Child: {{ value() }}</p>
-    <button class="bg-slate-400 p-2 rounded active:bg-slate-200" (click)="increment()">
+    <button #btn class="bg-slate-400 p-2 rounded active:bg-slate-200" (click)="increment()">
       Add to cart
     </button>
   </span>
