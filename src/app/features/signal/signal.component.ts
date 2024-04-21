@@ -27,9 +27,15 @@ export class SignalComponent {
 
   myOsb$ = toObservable(this.usuario);
 
+  counter = signal<number>(0);
+  counterComputed = computed(() => this.counter() * 2);
+
   private readonly injector = inject(Injector);
   constructor() {
-    effect(() => console.log(this.searchQuery())); //Dentro del Contexto
+    effect(() => {
+      //console.log(this.searchQuery());
+      console.log("The value of counter in effect: ", this.counter());
+    }); //Dentro del Contexto
   }
   changeValue() {
     this.searchQuery.set('New Value');
@@ -38,5 +44,13 @@ export class SignalComponent {
 
   onUpdateValue() {
     this.searchQuery.update((current) => current + 'YouTube');
+  }
+
+  increment(){
+    this.counter.update((currentValue) => currentValue + 1);
+  }
+
+  decrement(){
+    this.counter.update((currentValue) => currentValue - 1);
   }
 }

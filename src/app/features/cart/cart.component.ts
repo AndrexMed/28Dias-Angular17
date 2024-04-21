@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CartStore } from '../../store/cart.store';
 
 @Component({
   selector: 'app-cart',
@@ -9,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class CartComponent {
 
+  cartStore = inject(CartStore);
+
+  onRemove(idProduct: number){
+    this.cartStore.removeItemFromCart(idProduct);
+  }
 }

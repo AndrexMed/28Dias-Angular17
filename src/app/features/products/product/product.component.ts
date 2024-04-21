@@ -1,4 +1,4 @@
-import { Component, Input, computed, input, model } from '@angular/core';
+import { Component, EventEmitter, Input, Output, computed, input, model } from '@angular/core';
 import { Product } from '../../../models/product.model';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -32,15 +32,21 @@ export class ProductComponent {
     transform: addDiscontProperty,
   });
 
-  rating = computed(() => {
-    const { rating } = this.product();
-    return Object.values(rating);
-  });
+  @Output() addToCart = new EventEmitter<Product>();
+
+  // rating = computed(() => {
+  //   const { rating } = this.product();
+  //   return Object.values(rating);
+  // });
 
   value = model(0);
 
   ngOnInit() {
     //console.log(this.product);
+  }
+
+  onAddToCart(product: Product){
+    this.addToCart.emit(product);
   }
 
   increment() {

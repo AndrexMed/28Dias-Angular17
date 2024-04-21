@@ -4,3 +4,9 @@
 <p>Observable: {{ myOsb$ | async }}</p>
 <button class="bg-red-100" (click)="changeValue()">Change</button>
 <button class="bg-blue-100" (click)="onUpdateValue()">Update</button>
+
+<div class="border rounded p-2 mt-6">
+    <p>Value of counter: {{ counterComputed() }}</p>
+    <button class="bg-gray-500" (click)="increment()">Increment</button>
+    <button class="bg-gray-700 ml-2" (click)="decrement()">Decrement</button>
+</div>

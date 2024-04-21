@@ -16,7 +16,7 @@
 
   <span class="flex flex-col gap-3">
     <p>Value From Child: {{ value() }}</p>
-    <button #btn class="bg-slate-400 p-2 rounded active:bg-slate-200" (click)="increment()">
+    <button #btn class="bg-slate-400 p-2 rounded active:bg-slate-200" (click)="onAddToCart(product())">
       Add to cart
     </button>
   </span>

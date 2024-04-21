@@ -20,6 +20,7 @@ import { ProductComponent } from './product/product.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
+import { CartStore } from '../../store/cart.store';
 
 @Component({
   selector: 'app-products',
@@ -34,6 +35,9 @@ import { LoadingComponent } from '../../shared/components/loading/loading.compon
   styleUrl: './products.component.scss',
 })
 export class ProductsComponent implements OnInit {
+
+  cartStore = inject(CartStore);
+
   childComponent = viewChild(ProductComponent);
   childrenComponent = viewChildren(ProductComponent);
 
@@ -85,5 +89,9 @@ export class ProductsComponent implements OnInit {
     //   const result = toSignal(this.products$);
     //   console.log(result);
     // });
+  }
+
+  onAddToCart(product: Product){
+    this.cartStore.addToCart(product);
   }
 }

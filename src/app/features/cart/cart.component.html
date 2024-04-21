@@ -1,1 +1,8 @@
-<p>cart works!</p>
+@for (product of cartStore.products(); track $index) {
+    <div>
+        <p>{{ product.title }}</p>
+        <p>{{ product.price }}</p>
+        <button class="m-2 p-2 bg-red-400" type="button" (click)="onRemove(product.id)">Remove</button>
+    </div>
+   
+}
