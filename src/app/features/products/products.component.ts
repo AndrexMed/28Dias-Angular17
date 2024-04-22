@@ -36,7 +36,7 @@ import { CartStore } from '../../store/cart.store';
 })
 export class ProductsComponent implements OnInit {
 
-  cartStore = inject(CartStore);
+  //cartStore = inject(CartStore);
 
   childComponent = viewChild(ProductComponent);
   childrenComponent = viewChildren(ProductComponent);
@@ -92,6 +92,7 @@ export class ProductsComponent implements OnInit {
   }
 
   onAddToCart(product: Product){
-    this.cartStore.addToCart(product);
+    //this.cartStore.addToCart(product);
+    this.productSvc.addToCart(product);
   }
 }

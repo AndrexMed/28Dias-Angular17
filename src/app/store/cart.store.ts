@@ -1,16 +1,19 @@
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { Product } from '../models/product.model';
+import { computed } from '@angular/core';
 
 export interface CartState {
   products: Product[];
+  count: number;
 }
 
 const initialState: CartState = {
   products: [],
+  count: 0
 };
 
 export const CartStore = signalStore(
-  { providedIn: 'root' },
+  // { providedIn: 'root' },
   withState(initialState),
   withMethods(({ products, ...store }) => ({
     //Metodo para añadir
@@ -26,5 +29,12 @@ export const CartStore = signalStore(
       );
       patchState(store, { products: updatedProduct });
     },
+  })),
+  withHooks({
+    onInit: (store) => console.log("onInit Cart Store ", store),
+    onDestroy: (store) => console.log("onDestroy Cart Store ", store)
+  }),
+  withComputed(({products}) => ({
+    count: computed(() => products().length)
   }))
 );

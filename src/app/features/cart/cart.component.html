@@ -1,8 +1,15 @@
-@for (product of cartStore.products(); track $index) {
-    <div>
+<div class="flex gap-2 items-center justify-center">
+    @for (product of productsSvc.products(); track $index) {
+    <div class="border p-2 flex flex-col items-center">
+        <img [src]="product.images[0]" alt="" class="rounded">
         <p>{{ product.title }}</p>
-        <p>{{ product.price }}</p>
+        <p>{{ product.price | currency: 'COP' }}$</p>
         <button class="m-2 p-2 bg-red-400" type="button" (click)="onRemove(product.id)">Remove</button>
     </div>
-   
-}
+    }
+    @empty {
+        <div>
+            <p>No articles found.</p>
+        </div>
+    }
+</div>

@@ -14,7 +14,7 @@
 </button>
 
 <p>Value In Parent: {{ valueFromParent }}</p>
-<p>Value Cart In Products: {{ cartStore.products().length }}</p>
+<p>Value Cart In Products: {{ productSvc.count() }}</p>
 
 <!-- <span class="flex justify-center flex-wrap gap-4 mx-6">
   @for (item of products; track item.id) { -->
@@ -53,10 +53,12 @@
 </span> -->
 
 <!-- SIN DEFFER -->
+@if (productsSignal(); as products) {
 <span class="flex justify-center flex-wrap gap-4 mx-6">
-  @for (item of productsSignal(); track item.id) {
+  @for (item of products; track item.id) {
   <app-product [product]="item" [(value)]="valueFromParent" (addToCart)="onAddToCart($event)"></app-product>
   }
 </span>
+}
   
 <!-- } -->
