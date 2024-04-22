@@ -17,7 +17,7 @@ import { patchState, signalState } from '@ngrx/signals';
   templateUrl: './signal.component.html',
   styleUrl: './signal.component.scss',
 })
-export class SignalComponent {
+export default class SignalComponent {
   searchQuery = signal<string>('Giovanni Alzate V1');
   searchQueryReadOnly = this.searchQuery.asReadonly();
 

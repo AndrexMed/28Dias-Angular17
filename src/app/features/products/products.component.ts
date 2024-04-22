@@ -34,7 +34,7 @@ import { CartStore } from '../../store/cart.store';
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
-export class ProductsComponent implements OnInit {
+export default class ProductsComponent implements OnInit {
 
   //cartStore = inject(CartStore);
 

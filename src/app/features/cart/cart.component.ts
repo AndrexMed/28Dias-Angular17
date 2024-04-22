@@ -10,7 +10,7 @@ import { CurrencyPipe } from '@angular/common';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent {
+export default class CartComponent {
 
   //cartStore = inject(CartStore);
   productsSvc = inject(ProductService);

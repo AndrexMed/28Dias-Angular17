@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
-export class DetailsComponent {
+export default class DetailsComponent {
 
   @Input('id') productId!: number; // De esta forma la variable es reactiva.
 

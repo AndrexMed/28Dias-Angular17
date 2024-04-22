@@ -1,7 +1,4 @@
 import { Routes } from '@angular/router';
-import { ProductsComponent } from './features/products/products.component';
-import { CartComponent } from './features/cart/cart.component';
-import { DetailsComponent } from './features/products/product/details/details.component';
 
 export const routes: Routes = [
   {
@@ -11,23 +8,28 @@ export const routes: Routes = [
   },
   {
     path: 'products',
-    loadComponent: () => import('./features/products/products.component').then((c) => c.ProductsComponent),
+    loadComponent: () => import('./features/products/products.component'),
   },
   {
     path: 'product-detail/:id',
     loadComponent: () =>
-      import('./features/products/product/details/details.component').then(
-        (c) => c.DetailsComponent
-      ),
+      import('./features/products/product/details/details.component'),
   },
   {
     path: 'cart',
-    loadComponent: () =>
-      import('./features/cart/cart.component').then((c) => c.CartComponent),
+    loadComponent: () => import('./features/cart/cart.component'),
   },
   {
     path: 'signals',
-    loadComponent: () =>
-      import('./features/signal/signal.component').then((c) => c.SignalComponent),
+    loadComponent: () => import('./features/signal/signal.component'),
+  },
+  {
+    path: 'checkout',
+    loadComponent: () => import('./features/checkout/checkout.component')
+  },
+  {
+    path: '**',
+    redirectTo: 'products',
+    pathMatch: 'full',
   },
 ];
