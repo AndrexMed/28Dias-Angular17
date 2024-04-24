@@ -1,44 +1,17 @@
-import {
-  Component,
-  PLATFORM_ID,
-  afterNextRender,
-  afterRender,
-  inject,
-} from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { ProductService } from './api/product.service';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './layout/header/header.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, RouterLink, RouterLinkActive],
-  templateUrl: './app.component.html',
-  //styleUrl: './app.component.scss',
-  //styleUrls: ['./app.component.scss', './otroArchivo.scss'],
-  // styles: ['$primary: red; h2 {color: $primary}'],
-  styles: `h2{
-    color: orange;
-    font-weight: bold;
-  }`,
+  imports: [RouterOutlet, HeaderComponent],
+  template: `
+    <app-header />
+    <main>
+      <router-outlet />
+    </main>
+  `,
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  private readonly productSvc = inject(ProductService);
-
-  products$ = this.productSvc.getAllProducts();
-
-  private readonly platformId = inject(PLATFORM_ID);
-
-  constructor() {
-    //localStorage.setItem('cart', 'value'); //Daria error
-
-    afterNextRender(() => {
-      localStorage.setItem('cart', 'value');
-      console.log('1. isPlatformBrowser: ', this.platformId);
-    });
-
-    afterRender(() => {
-      console.log('2. isPlatformServer: ', this.platformId);
-    });
-  }
-}
+export class AppComponent {}

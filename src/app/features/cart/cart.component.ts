@@ -17,6 +17,6 @@ export default class CartComponent {
 
   onRemove(idProduct: number){
     //this.cartStore.removeItemFromCart(idProduct);
-    this.productsSvc.removeItemFromCart(idProduct);
+    //this.productsSvc.removeItemFromCart(idProduct);
   }
 }

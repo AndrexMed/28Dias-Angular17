@@ -16,7 +16,7 @@ import {
   withFetch,
   withInterceptors,
 } from '@angular/common/http';
-import { ErrorResponseInterceptor } from './shared/error-response-interceptor';
+import { ErrorResponseInterceptor } from './shared/interceptors/error-response-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [

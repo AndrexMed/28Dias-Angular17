@@ -1,5 +1,5 @@
 import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
-import { Product } from '../models/product.model';
+import { Product } from '../shared/models/product.model';
 import { computed } from '@angular/core';
 
 export interface CartState {

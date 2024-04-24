@@ -1,64 +1,9 @@
-<!-- @if (products$ |async; as products) { -->
-<button
-  class="bg-red-100 mx-8 mb-6 p-4 rounded hover:bg-red-200 active:bg-red-300 cursor-pointer"
-  (click)="cond = !cond"
->
-  Load Info {{ cond }}
-</button>
-
-<button
-  class="bg-blue-100 mx-8 mb-6 p-4 rounded hover:bg-blue-200 active:bg-blue-300 cursor-pointer"
-  #interaccion
->
-  Load Info {{ cond }}
-</button>
-
-<p>Value In Parent: {{ valueFromParent }}</p>
-<p>Value Cart In Products: {{ productSvc.count() }}</p>
-
-<!-- <span class="flex justify-center flex-wrap gap-4 mx-6">
-  @for (item of products; track item.id) { -->
-<!-- @defer { SIN CONDICION-->
-<!-- @defer(when cond) { CON CONDICION-->
-<!-- @defer(when cond) { -->
-<!-- @defer(on interaction(interaccion)) {
-  <app-product [product]="item"></app-product>
-  } @placeholder {
-  <app-skeleton />
-  } @loading {
-  <app-loading />
-  } @error {
-  <span>
-    <p>Error en la imagen.</p>
-  </span>
-  } }
-</span> -->
-
-<!-- <span class="flex justify-center flex-wrap gap-4 mx-6">
-  @for (item of productsSignal(); track item.id) { -->
-  <!-- @defer { SIN CONDICION-->
-  <!-- @defer(when cond) { CON CONDICION-->
-  <!-- @defer(when cond) { -->
-  <!-- @defer(on interaction(interaccion)) {
-  <app-product [product]="item" [(value)]="valueFromParent"></app-product>
-  } @placeholder {
-  <app-skeleton />
-  } @loading {
-  <app-loading />
-  } @error {
-  <span>
-    <p>Error en la imagen.</p>
-  </span>
-  } }
-</span> -->
-
-<!-- SIN DEFFER -->
-@if (productsSignal(); as products) {
-<span class="flex justify-center flex-wrap gap-4 mx-6">
-  @for (item of products; track item.id) {
-  <app-product [product]="item" [(value)]="valueFromParent" (addToCart)="onAddToCart($event)"></app-product>
-  }
-</span>
-}
-  
-<!-- } -->
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap -m-4">
+      @for (item of products(); track $index) {
+      <app-product class="w-full p-4 lg:w-1/4 md:w-1/2" [product]="item" />
+      }
+    </div>
+  </div>
+</section>
