@@ -7,6 +7,8 @@ export interface Product {
   image: string;
   rating: Rating;
   discount: boolean;
+  qty: number;
+  subTotal: number;
 }
 
 interface Category {

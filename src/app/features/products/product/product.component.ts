@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 import { Product } from '../../../shared/models/product.model';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -23,8 +23,11 @@ function addDiscontProperty(product: Product): Product {
 })
 export class ProductComponent {
   product = input.required<Product>();
+  @Output() addToCartEvent = new EventEmitter<Product>();
 
-  onAddToCart() {}
+  onAddToCart() {
+    this.addToCartEvent.emit(this.product());
+  }
 
   handleImageError(event: any) {
     event.target.src =
